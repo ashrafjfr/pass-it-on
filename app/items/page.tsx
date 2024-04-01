@@ -125,7 +125,7 @@ export default function ItemList() {
       </div>
       
       <div className="flex flex-row justify-center items-center mt-7">
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-row gap-8">
           {productData.map(product => (
              <ProductCard product={product} />
           ))}
