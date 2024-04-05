@@ -1,0 +1,26 @@
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Masonry from 'react-masonry-css';
+
+const ProductCardLayout: React.FC<{ productData: Product[] }> = ({ productData }) => {
+const staggeredWidths = ['160px', '240px', '200px', '150px']; // Define your staggered widths here
+
+return (
+    <Masonry
+    breakpointCols={{ default: 4, 1100: 3, 700: 2, 500: 1 }}
+    className="my-masonry-grid"
+    columnClassName="my-masonry-grid_column"
+    >
+    {productData.map((product, index) => (
+        <ProductCardStaggered
+        key={product.id}
+        product={product}
+        width={staggeredWidths[index % staggeredWidths.length]}
+        />
+    ))}
+    </Masonry>
+);
+};
+  
+export default ProductCardLayout;
