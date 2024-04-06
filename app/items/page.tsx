@@ -124,9 +124,9 @@ export default function ItemList() {
         </div>
       </div>
       
-      <StaggeredLayout />
+      {/* <StaggeredLayout /> */}
 
-      {/* <ModularLayout /> */}
+      <ModularLayout />
     </main>
   );
 }
