@@ -103,6 +103,7 @@ export default function ItemList() {
             />{" "}
             <a href="/items">
               <Image
+                id="item-list-button"
                 className="ive_eobj_left ive_clickable padding-right: 2px padding-left: 2px"
                 src="/item_list.png"
                 alt="Item List"

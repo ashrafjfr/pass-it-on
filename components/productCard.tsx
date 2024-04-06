@@ -51,6 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           style={{ maxWidth: '205px', maxHeight: '205px' }}
         />
         <button
+          id="add-text-button"
           className={`absolute bottom-3 right-3 flex flex-row gap-2 justify-center items-center w-30
           ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] bg-opacity-70 text-gray-50' : 'bg-neutral-400 hover:bg-neutral-500 bg-opacity-70 text-gray-50'} text-[0.6em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none`}
           onClick={handleAddToCartClick}
