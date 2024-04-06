@@ -130,16 +130,16 @@ export default function ItemList() {
       <ToastContainer />
 
       {/* SearchNav with only main category filter */}
-      <SearchNavMainCategory 
-        handleUpdateData={handleUpdateData} 
-        handleNoItemsFound={handleNoItemsFound}
-        handleLogImplementation={handleLogImplementation}/>
-
-      {/* SearchNav with both main and sub category filter */}
-      {/* <SearchNavSubCategory 
+      {/* <SearchNavMainCategory 
         handleUpdateData={handleUpdateData} 
         handleNoItemsFound={handleNoItemsFound}
         handleLogImplementation={handleLogImplementation}/> */}
+
+      {/* SearchNav with both main and sub category filter */}
+      <SearchNavSubCategory 
+        handleUpdateData={handleUpdateData} 
+        handleNoItemsFound={handleNoItemsFound}
+        handleLogImplementation={handleLogImplementation}/>
       
       <div className="flex flex-row justify-center items-center mt-7">
         <div className="flex flex-row items-center mr-52 ml-4"> 
