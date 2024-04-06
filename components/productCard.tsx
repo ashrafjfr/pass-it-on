@@ -51,6 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           style={{ maxWidth: '205px', maxHeight: '205px' }}
         />
         <button 
+          id="add-icon-button"
           className={`absolute top-3 right-3 focus:outline-none ${
             isClicked ? 'clicked' : ''
           }`}
