@@ -27,48 +27,41 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const [isClicked, setIsClicked] = useState(false);
   const [isIconPlus, setIsIconPlus] = useState(true);
-  const [isHovering, setIsHovering] = useState(false);
-  const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCartClick = () => {
+    setIsClicked(true);
+    toast.success('Item added to cart!', {
+      position: 'top-right',
+      autoClose: 2000,
+    });
+
     setIsClicked(!isClicked);
     setIsIconPlus(!isIconPlus);
-    if (!isClicked) {
-      toast.success('Item added to cart!', {
-        position: 'top-right',
-        autoClose: 2000,
-      });
-    }
-    setIsAdded(!isAdded);
   };
 
+  // Modular Product Card
   return (
     <div className="relative w-60 border border-gray-200 rounded-lg shadow-sm p-4">
       <p className="text-sm text-gray-600 mb-2 font-semibold">{product.id}</p>
       <div className="relative">
-        <button
-          className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-row gap-2 justify-center items-center w-32
-          ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] bg-opacity-70 text-gray-50' : 'bg-neutral-400 hover:bg-neutral-500 bg-opacity-70 text-gray-50'} text-[0.6em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none ${isHovering || isAdded ? '' : 'hidden'}`}
-  
-          onClick={handleAddToCartClick}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-          >
-          {isClicked ? (
-            <CheckCircleIcon className='h-3 w-3' fill='#f9fafb'/>
-          ) : (
-            <ShoppingCartIcon className='h-3 w-3' fill='#f9fafb'/>
-          )}
-          {isClicked ? 'Added to Cart' : 'Add To Cart'}
-        </button>
         <img
           src={product.image}
           alt={product.title}
           className="w-full h-64 object-cover mb-2 rounded-2xl"
           style={{ maxWidth: '205px', maxHeight: '205px' }}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
         />
+        <button 
+          className={`absolute top-3 right-3 focus:outline-none ${
+            isClicked ? 'clicked' : ''
+          }`}
+          onClick={handleAddToCartClick}
+          >
+          {isIconPlus ? (
+            <PlusCircleIcon className='h-10 w-10' fill='#e0e0de'/>
+          ) : (
+            <CheckCircleIcon className='h-10 w-10' fill='#2BA41D' />
+          )}
+        </button>
       </div>
       <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
       <p className="text-[0.7em] text-gray-600 mb-2">{truncatedDescription}</p>
