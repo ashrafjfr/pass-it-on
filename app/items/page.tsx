@@ -7,7 +7,6 @@ import { useState } from "react";
 import PageNav from "@/components/pageNav";
 import ProductCard from "@/components/productCard";
 import ProductCardStaggered from "@/components/productCardStaggered";
-import MasonryLayout from "@/components/masonryLayout";
 import { ShoppingCartIcon } from '@heroicons/react/20/solid';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
