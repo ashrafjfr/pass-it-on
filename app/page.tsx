@@ -25,7 +25,7 @@ export default function Home() {
           </div>
           <div
             className="flex flex-row items-center justify-end pt-3">
-            <a href="">
+            <a href="" id="home-button">
               <Image
                 className="ive_eobj_left ive_clickable padding-right: 2px padding-left: 2px"
                 src="/home.png"
@@ -55,7 +55,7 @@ export default function Home() {
                 width={73}
                 height={61}
             />{" "}
-            <a href="/items">
+            <a href="/items" id="item-list-button">
               <Image
                 className="ive_eobj_left ive_clickable padding-right: 2px padding-left: 2px"
                 src="/item_list.png"
