@@ -101,17 +101,19 @@ function test() {
 
 // Generates or remembers a somewhat-unique ID with distilled user-agent info.
 function getUniqueId() {
-  if (!('uid' in localStorage)) {
-    var browser = findFirstString(navigator.userAgent, [
-      'Seamonkey', 'Firefox', 'Chromium', 'Chrome', 'Safari', 'OPR', 'Opera',
-      'Edge', 'MSIE', 'Blink', 'Webkit', 'Gecko', 'Trident', 'Mozilla']);
-    var os = findFirstString(navigator.userAgent, [
-      'Android', 'iOS', 'Symbian', 'Blackberry', 'Windows Phone', 'Windows',
-      'OS X', 'Linux', 'iOS', 'CrOS']).replace(/ /g, '_');
-    var unique = ('' + Math.random()).substr(2);
-    localStorage['uid'] = os + '-' + browser + '-' + unique;
+  if (typeof window !== 'undefined') {
+    if (!('uid' in localStorage)) {
+      var browser = findFirstString(navigator.userAgent, [
+        'Seamonkey', 'Firefox', 'Chromium', 'Chrome', 'Safari', 'OPR', 'Opera',
+        'Edge', 'MSIE', 'Blink', 'Webkit', 'Gecko', 'Trident', 'Mozilla']);
+      var os = findFirstString(navigator.userAgent, [
+        'Android', 'iOS', 'Symbian', 'Blackberry', 'Windows Phone', 'Windows',
+        'OS X', 'Linux', 'iOS', 'CrOS']).replace(/ /g, '_');
+      var unique = ('' + Math.random()).substr(2);
+      localStorage['uid'] = os + '-' + browser + '-' + unique;
+    }
+    return localStorage['uid'];
   }
-  return localStorage['uid'];
 }
 
 // Log the given event.
