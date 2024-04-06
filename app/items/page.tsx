@@ -130,16 +130,16 @@ export default function ItemList() {
       <ToastContainer />
 
       {/* SearchNav with only main category filter */}
-      {/* <SearchNavMainCategory 
-        handleUpdateData={handleUpdateData} 
-        handleNoItemsFound={handleNoItemsFound}
-        handleLogImplementation={handleLogImplementation}/> */}
-
-      {/* SearchNav with both main and sub category filter */}
-      <SearchNavSubCategory 
+      <SearchNavMainCategory 
         handleUpdateData={handleUpdateData} 
         handleNoItemsFound={handleNoItemsFound}
         handleLogImplementation={handleLogImplementation}/>
+
+      {/* SearchNav with both main and sub category filter */}
+      {/* <SearchNavSubCategory 
+        handleUpdateData={handleUpdateData} 
+        handleNoItemsFound={handleNoItemsFound}
+        handleLogImplementation={handleLogImplementation}/> */}
       
       <div className="flex flex-row justify-center items-center mt-7">
         <div className="flex flex-row items-center mr-52 ml-4"> 
@@ -163,8 +163,17 @@ export default function ItemList() {
         ))}
       </div> */}
 
+      <div className="flex flex-row gap-8 justify-center mt-7 mb-2 mr-32 relative">
+        <div className="text-black font-bold mr-10 ml-20">ID</div>
+        <div className="text-black font-bold mr-16 ml-10 pr-12">Picture</div>
+        <div className="flex flex-col justify-left mr-16 pr-12">
+          <div className="text-black font-bold">Description</div>
+          <div className="text-black font-normal text-[0.6em]">Name, Description, Location (Collection/Delivery)</div>
+        </div>  
+      </div>
+      
       <div className="flex flex-row justify-center items-center mt-7">
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-row gap-8">
           {data.map((product, index) => (
             <React.Fragment key={product.id}>
               <ProductCard product={product} />
