@@ -29,14 +29,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [isIconPlus, setIsIconPlus] = useState(true);
 
   const handleAddToCartClick = () => {
-    setIsClicked(true);
-    toast.success('Item added to cart!', {
-      position: 'top-right',
-      autoClose: 2000,
-    });
-
     setIsClicked(!isClicked);
     setIsIconPlus(!isIconPlus);
+    if (!isClicked) {
+      toast.success('Item added to cart!', {
+        position: 'top-right',
+        autoClose: 2000,
+      });
+    }
   };
 
   // Modular Product Card
@@ -50,17 +50,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           className="w-full h-64 object-cover mb-2 rounded-2xl"
           style={{ maxWidth: '205px', maxHeight: '205px' }}
         />
-        <button 
-          className={`absolute top-3 right-3 focus:outline-none ${
-            isClicked ? 'clicked' : ''
-          }`}
+        <button
+          className={`absolute bottom-3 right-3 flex flex-row gap-2 justify-center items-center w-30
+          ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] bg-opacity-70 text-gray-50' : 'bg-neutral-400 hover:bg-neutral-500 bg-opacity-70 text-gray-50'} text-[0.6em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none`}
           onClick={handleAddToCartClick}
           >
-          {isIconPlus ? (
-            <PlusCircleIcon className='h-10 w-10' fill='#e0e0de'/>
+          {isClicked ? (
+            <CheckCircleIcon className='h-3 w-3' fill='#f9fafb'/>
           ) : (
-            <CheckCircleIcon className='h-10 w-10' fill='#2BA41D' />
+            <ShoppingCartIcon className='h-3 w-3' fill='#f9fafb'/>
           )}
+          {isClicked ? 'Added to Cart' : 'Add To Cart'}
         </button>
       </div>
       <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
