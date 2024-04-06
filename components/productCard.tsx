@@ -27,6 +27,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const [isClicked, setIsClicked] = useState(false);
   const [isIconPlus, setIsIconPlus] = useState(true);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCartClick = () => {
     setIsClicked(!isClicked);
@@ -37,11 +39,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         autoClose: 2000,
       });
     }
+    setIsAdded(!isAdded);
   };
 
-  // Row Product Card
   return (
-    <div className="flex flex-row items-center gap-8 relative w-110 border border-gray-200 rounded-lg shadow-sm p-4">
+    <div className="flex flex-row items-center gap-8 relative w-110 border border-gray-200 rounded-lg shadow-sm p-4"
+    onMouseEnter={() => setIsHovering(true)}
+    onMouseLeave={() => setIsHovering(false)}
+    >
+      
       <p className="text-sm text-gray-600 mb-2 font-semibold">{product.id}</p>
       <div className="relative">
         <img
@@ -68,16 +74,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           transform: translateY(2px);
         }
       `}</style>
-      <div className='items-center'>
+      <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-row justify-center items-center w-full h-full ${isAdded ? '' : 'bg-neutral-200 bg-opacity-50'} ${isHovering || isAdded ? '' : 'hidden'}`}>
         <button
-          className={`flex flex-row gap-3 justify-center items-center w-40
-          ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] text-gray-50' : 'bg-neutral-300 hover:bg-neutral-400 text-gray-50'} text-[0.8em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none`}
+          className={`absolute bottom-3 right-3 flex flex-row gap-2 justify-center items-center w-30
+          ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] text-gray-50' : 'bg-neutral-300 hover:bg-neutral-400 text-gray-50'} text-[0.8em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none ${isHovering || isAdded ? '' : 'hidden'}`}
           onClick={handleAddToCartClick}
           >
           {isClicked ? (
-            <CheckCircleIcon className='h-4 w-4' fill='#f9fafb'/>
+            <CheckCircleIcon className='h-3 w-3' fill='#f9fafb'/>
           ) : (
-            <ShoppingCartIcon className='h-4 w-4' fill='#f9fafb'/>
+            <ShoppingCartIcon className='h-3 w-3' fill='#f9fafb'/>
           )}
           {isClicked ? 'Added to Cart' : 'Add To Cart'}
         </button>
