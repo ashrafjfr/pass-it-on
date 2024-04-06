@@ -6,7 +6,7 @@ export default function Home() {
     <main className="flex flex-col bg-white text-stone-900">
       <div className="flex flex-row justify-center items-start width:990px">
         <div style={{ float: "left", paddingTop: 5 }}>
-          <a href="https://www.passiton.org.sg/">
+          <a href="">
             <Image 
               className="ive_eobj_left ive_clickable" 
               src="/logo.png" 
@@ -36,7 +36,7 @@ export default function Home() {
                 height={61}
               />
             </a>{" "}
-            <a href="https://www.passiton.org.sg/about-us">
+            <a href="">
               <Image
                 className="ive_eobj_left ive_clickable padding-right: 2px padding-left: 2px"
                 src="/about_us.png"
@@ -45,7 +45,7 @@ export default function Home() {
                 height={61}
               />
             </a>{" "}
-            <a href="https://www.passiton.org.sg/grant-a-wish">
+            <a href="">
               <Image
                 className="ive_eobj_left ive_clickable padding-right: 2px padding-left: 2px"
                 src="/grant_wish.png"
@@ -54,7 +54,7 @@ export default function Home() {
                 height={61}
               />
             </a>{" "}
-            <a href="https://www.passiton.org.sg/vwo-list">
+            <a href="">
               <Image
                 className="ive_eobj_left ive_clickable padding-right: 2px padding-left: 2px"
                 src="/vwo_list.png"
@@ -72,7 +72,7 @@ export default function Home() {
                 height={61}
               />
             </a>{" "}
-            <a href="https://www.passiton.org.sg/faq">
+            <a href="">
               <Image
                 className="ive_eobj_left ive_clickable padding-right: 2px padding-left: 2px"
                 src="/faq.png"
@@ -81,7 +81,7 @@ export default function Home() {
                 height={61}
               />
             </a>{" "}
-            <a href="https://www.passiton.org.sg/contact-us">
+            <a href="">
               <Image
                 className="ive_eobj_left ive_clickable padding-right: 2px padding-left: 2px"
                 src="/contact.png"

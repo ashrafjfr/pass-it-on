@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PlusCircleIcon, CheckCircleIcon } from '@heroicons/react/24/solid';
+import AddToCartButton from './addToCart';
+import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 
 interface Product {
   id: string;
@@ -17,32 +20,218 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const truncatedDescription =
-    product.description.length > 200
-      ? `${product.description.slice(0, 200)}...`
+    product.description.length > 170
+      ? `${product.description.slice(0, 170)}...`
       : product.description;
 
   const formattedLocation = product.location.join(', ');
 
   const [isClicked, setIsClicked] = useState(false);
+  const [isIconPlus, setIsIconPlus] = useState(true);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCartClick = () => {
-    setIsClicked(true);
-    toast.success('Item added to cart!', {
-      position: 'top-right',
-      autoClose: 2000,
-    });
-
-    // Reset the button state after 2 seconds
-    setTimeout(() => {
-      setIsClicked(false);
-    }, 100);
+    setIsClicked(!isClicked);
+    setIsIconPlus(!isIconPlus);
+    if (!isClicked) {
+      toast.success('Item added to cart!', {
+        position: 'top-right',
+        autoClose: 2000,
+      });
+    }
+    setIsAdded(!isAdded);
   };
 
   // Row Product Card
+  // return (
+  //   <div className="flex flex-row items-center gap-8 relative w-110 border border-gray-200 rounded-lg shadow-sm p-4">
+  //     <p className="text-sm text-gray-600 mb-2 font-semibold">{product.id}</p>
+  //     <div className="relative">
+  //       <img
+  //         src={product.image}
+  //         alt={product.title}
+  //         className="w-full h-64 object-cover mb-2 rounded-2xl"
+  //         style={{ width: '210px', height: '150px' }}
+  //       />
+  //     </div>
+  //     <div className="flex flex-col gap-2 w-80 mr-5">
+  //       <h2 className="text-md font-bold mb-1">{product.title}</h2>
+  //       <p className="text-[0.8em] text-gray-600 mb-2">{truncatedDescription}</p>
+  //       <div className="w-3/4">
+  //         <p className="text-[0.6em] text-gray-600">{formattedLocation}</p>
+  //       </div>
+  //       <div className="w-1/4">
+  //         <p className="text-[0.6em] text-green-400">
+  //           {product.delivery ? 'Delivery Covered' : 'Delivery Not Covered'}
+  //         </p>
+  //       </div>
+  //     </div>
+  //     <style jsx>{`
+  //       .clicked {
+  //         transform: translateY(2px);
+  //       }
+  //     `}</style>
+  //     <div className='items-center'>
+  //       {/* <button
+  //         className={`flex flex-row gap-3 justify-center items-center w-40
+  //         ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] text-gray-50' : 'bg-neutral-300 hover:bg-neutral-400 text-gray-50'} text-[0.8em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none`}
+  //         onClick={handleAddToCartClick}
+  //         >
+  //         {isClicked ? (
+  //           <CheckCircleIcon className='h-4 w-4' fill='#f9fafb'/>
+  //         ) : (
+  //           <ShoppingCartIcon className='h-4 w-4' fill='#f9fafb'/>
+  //         )}
+  //         {isClicked ? 'Added to Cart' : 'Add To Cart'}
+  //       </button> */}
+  //       {/* <button className="flex flex-row  gap-3 items-center bg-neutral-300 hover:bg-neutral-400 text-gray-50 text-[0.8em] font-semibold py-2 px-4 rounded-full ml-3 h-10">
+  //         <ShoppingCartIcon className='h-4 w-4' fill='#f9fafb'/>
+  //         Add To Cart
+  //       </button> */}
+  //       <button
+  //         className={`focus:outline-none ${
+  //           isClicked ? 'clicked' : ''
+  //         }`}
+  //         onClick={handleAddToCartClick}
+  //         >
+  //         {isIconPlus ? (
+  //           <PlusCircleIcon className='h-10 w-10' fill='#e0e0de'/>
+  //         ) : (
+  //           <CheckCircleIcon className='h-10 w-10' fill='#2BA41D' />
+  //         )}
+  //       </button>
+  //     </div>
+  //   </div>
+  // );
+
+  // Modular Product Card
+  // return (
+  //   <div className="relative w-60 border border-gray-200 rounded-lg shadow-sm p-4">
+  //     <p className="text-sm text-gray-600 mb-2 font-semibold">{product.id}</p>
+  //     <div className="relative">
+  //       <img
+  //         src={product.image}
+  //         alt={product.title}
+  //         className="w-full h-64 object-cover mb-2 rounded-2xl"
+  //         style={{ maxWidth: '205px', maxHeight: '205px' }}
+  //       />
+        // <button
+        //   className={`absolute bottom-3 right-3 flex flex-row gap-2 justify-center items-center w-30
+        //   ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] bg-opacity-70 text-gray-50' : 'bg-neutral-400 hover:bg-neutral-500 bg-opacity-70 text-gray-50'} text-[0.6em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none`}
+        //   onClick={handleAddToCartClick}
+        //   >
+        //   {isClicked ? (
+        //     <CheckCircleIcon className='h-3 w-3' fill='#f9fafb'/>
+        //   ) : (
+        //     <ShoppingCartIcon className='h-3 w-3' fill='#f9fafb'/>
+        //   )}
+        //   {isClicked ? 'Added to Cart' : 'Add To Cart'}
+        // </button>
+  //       {/* <button 
+  //         className={`absolute top-3 right-3 focus:outline-none ${
+  //           isClicked ? 'clicked' : ''
+  //         }`}
+  //         onClick={handleAddToCartClick}
+  //         >
+  //         {isIconPlus ? (
+  //           <PlusCircleIcon className='h-10 w-10' fill='#e0e0de'/>
+  //         ) : (
+  //           <CheckCircleIcon className='h-10 w-10' fill='#2BA41D' />
+  //         )}
+  //       </button> */}
+  //     </div>
+  //     <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
+  //     <p className="text-[0.7em] text-gray-600 mb-2">{truncatedDescription}</p>
+  //     <div className="flex flex-wrap">
+  //       <div className="w-3/4 pr-2 border-r border-gray-200">
+  //         <p className="text-[0.6em] text-gray-600">{formattedLocation}</p>
+  //       </div>
+  //       <div className="w-1/4">
+  //         <p className="text-[0.6em] text-green-400 ml-2">
+  //           {product.delivery ? 'Delivery Covered' : 'Delivery Not Covered'}
+  //         </p>
+  //       </div>
+  //     </div>
+  //     <style jsx>{`
+  //       .clicked {
+  //         transform: translateY(2px);
+  //       }
+  //     `}</style>
+  //   </div>
+  // );
+
+  // return (
+  //   <div className="relative w-60 border border-gray-200 rounded-lg shadow-sm p-4">
+  //     <p className="text-sm text-gray-600 mb-2 font-semibold">{product.id}</p>
+  //     <div className="relative">
+  //       <button
+  //         className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-row gap-2 justify-center items-center w-32
+  //         ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] bg-opacity-70 text-gray-50' : 'bg-neutral-400 hover:bg-neutral-500 bg-opacity-70 text-gray-50'} text-[0.6em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none ${isHovering || isAdded ? '' : 'hidden'}`}
+  
+  //         onClick={handleAddToCartClick}
+  //         onMouseEnter={() => setIsHovering(true)}
+  //         onMouseLeave={() => setIsHovering(false)}
+  //         >
+  //         {isClicked ? (
+  //           <CheckCircleIcon className='h-3 w-3' fill='#f9fafb'/>
+  //         ) : (
+  //           <ShoppingCartIcon className='h-3 w-3' fill='#f9fafb'/>
+  //         )}
+  //         {isClicked ? 'Added to Cart' : 'Add To Cart'}
+  //       </button>
+  //       <img
+  //         src={product.image}
+  //         alt={product.title}
+  //         className="w-full h-64 object-cover mb-2 rounded-2xl"
+  //         style={{ maxWidth: '205px', maxHeight: '205px' }}
+  //         onMouseEnter={() => setIsHovering(true)}
+  //         onMouseLeave={() => setIsHovering(false)}
+  //       />
+  //     </div>
+  //     <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
+  //     <p className="text-[0.7em] text-gray-600 mb-2">{truncatedDescription}</p>
+  //     <div className="flex flex-wrap">
+  //       <div className="w-3/4 pr-2 border-r border-gray-200">
+  //         <p className="text-[0.6em] text-gray-600">{formattedLocation}</p>
+  //       </div>
+  //       <div className="w-1/4">
+  //         <p className="text-[0.6em] text-green-400 ml-2">
+  //           {product.delivery ? 'Delivery Covered' : 'Delivery Not Covered'}
+  //         </p>
+  //       </div>
+  //     </div>
+  //     <style jsx>{`
+  //       .clicked {
+  //         transform: translateY(2px);
+  //       }
+  //     `}</style>
+  //   </div>
+  // );
+
   return (
-    <div className="flex flex-row items-center gap-8 relative w-110 border border-gray-200 rounded-lg shadow-sm p-4">
+    <div className="flex flex-row items-center gap-8 relative w-110 border border-gray-200 rounded-lg shadow-sm p-4"
+    onMouseEnter={() => setIsHovering(true)}
+    onMouseLeave={() => setIsHovering(false)}
+    >
+      
       <p className="text-sm text-gray-600 mb-2 font-semibold">{product.id}</p>
       <div className="relative">
+        {/* <button
+          className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-row gap-2 justify-center items-center w-32
+          ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] bg-opacity-70 text-gray-50' : 'bg-neutral-400 hover:bg-neutral-500 bg-opacity-70 text-gray-50'} text-[0.6em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none ${isHovering || isAdded ? '' : 'hidden'}`}
+  
+          onClick={handleAddToCartClick}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+          >
+          {isClicked ? (
+            <CheckCircleIcon className='h-3 w-3' fill='#f9fafb'/>
+          ) : (
+            <ShoppingCartIcon className='h-3 w-3' fill='#f9fafb'/>
+          )}
+          {isClicked ? 'Added to Cart' : 'Add To Cart'}
+        </button> */}
         <img
           src={product.image}
           alt={product.title}
@@ -50,10 +239,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           style={{ width: '210px', height: '150px' }}
         />
       </div>
-      <div className="flex flex-col gap-2">
-        <h2 className="w-36 text-sm font-semibold mb-1">{product.title}</h2>
-        <p className="w-80 text-[0.7em] text-gray-600 mb-2">{truncatedDescription}</p>
-        <div className="max-w-30 w-3/4">
+      <div className="flex flex-col gap-2 w-80 mr-5">
+        <h2 className="text-md font-bold mb-1">{product.title}</h2>
+        <p className="text-[0.8em] text-gray-600 mb-2">{truncatedDescription}</p>
+        <div className="w-3/4">
           <p className="text-[0.6em] text-gray-600">{formattedLocation}</p>
         </div>
         <div className="w-1/4">
@@ -67,60 +256,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           transform: translateY(2px);
         }
       `}</style>
-      <div className='items-center'>
+      <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-row justify-center items-center w-full h-full ${isAdded ? '' : 'bg-neutral-200 bg-opacity-50'} ${isHovering || isAdded ? '' : 'hidden'}`}>
         <button
-          className={`absolute top-3 right-3 focus:outline-none ${
-            isClicked ? 'clicked' : ''
-          }`}
+          className={`absolute bottom-3 right-3 flex flex-row gap-2 justify-center items-center w-30
+          ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] text-gray-50' : 'bg-neutral-300 hover:bg-neutral-400 text-gray-50'} text-[0.8em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none ${isHovering || isAdded ? '' : 'hidden'}`}
           onClick={handleAddToCartClick}
           >
-          <img src="/addButton.png" alt="Add to Cart" className="w-8 h-8" />
+          {isClicked ? (
+            <CheckCircleIcon className='h-3 w-3' fill='#f9fafb'/>
+          ) : (
+            <ShoppingCartIcon className='h-3 w-3' fill='#f9fafb'/>
+          )}
+          {isClicked ? 'Added to Cart' : 'Add To Cart'}
         </button>
       </div>
     </div>
   );
-
-  // Modular Product Card
-  /*
-  return (
-    <div className="relative w-60 border border-gray-200 rounded-lg shadow-sm p-4">
-      <p className="text-sm text-gray-600 mb-2 font-semibold">{product.id}</p>
-      <div className="relative">
-        <img
-          src={product.image}
-          alt={product.title}
-          className="w-full h-64 object-cover mb-2 rounded-2xl"
-          style={{ maxWidth: '205px', maxHeight: '205px' }}
-        />
-        <button
-          className={`absolute top-3 right-3 focus:outline-none ${
-            isClicked ? 'clicked' : ''
-          }`}
-          onClick={handleAddToCartClick}
-        >
-          <img src="/addButton.png" alt="Add to Cart" className="w-8 h-8" />
-        </button>
-      </div>
-      <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
-      <p className="text-[0.7em] text-gray-600 mb-2">{truncatedDescription}</p>
-      <div className="flex flex-wrap">
-        <div className="w-3/4 pr-2 border-r border-gray-200">
-          <p className="text-[0.6em] text-gray-600">{formattedLocation}</p>
-        </div>
-        <div className="w-1/4">
-          <p className="text-[0.6em] text-green-400 ml-2">
-            {product.delivery ? 'Delivery Covered' : 'Delivery Not Covered'}
-          </p>
-        </div>
-      </div>
-      <style jsx>{`
-        .clicked {
-          transform: translateY(2px);
-        }
-      `}</style>
-    </div>
-  );
-  */
 };
 
 export default ProductCard;
