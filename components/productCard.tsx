@@ -76,9 +76,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           onClick={handleAddToCartClick}
           >
           {isIconPlus ? (
-            <PlusCircleIcon className='h-10 w-10' fill='#e0e0de'/>
+            <PlusCircleIcon id='add-icon-button' className='h-10 w-10' fill='#e0e0de'/>
           ) : (
-            <CheckCircleIcon className='h-10 w-10' fill='#2BA41D' />
+            <CheckCircleIcon id='check-icon-button' className='h-10 w-10' fill='#2BA41D' />
           )}
         </button>
       </div>
