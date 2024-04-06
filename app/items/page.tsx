@@ -164,8 +164,8 @@ export default function ItemList() {
       </div> */}
 
       <div className="flex flex-row gap-8 justify-center mt-7 mb-2 mr-32 relative">
-        <div className="text-black font-bold mr-10 ml-20">ID</div>
-        <div className="text-black font-bold mr-16 ml-10 pr-12">Picture</div>
+        <div className="text-black font-bold mr-16">ID</div>
+        <div className="text-black font-bold mr-20 ml-5 pr-12">Picture</div>
         <div className="flex flex-col justify-left mr-16 pr-12">
           <div className="text-black font-bold">Description</div>
           <div className="text-black font-normal text-[0.6em]">Name, Description, Location (Collection/Delivery)</div>

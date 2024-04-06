@@ -70,16 +70,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       `}</style>
       <div className='items-center'>
         <button
-          className={`focus:outline-none ${
-            isClicked ? 'clicked' : ''
-          }`}
+          className={`flex flex-row gap-3 justify-center items-center w-40
+          ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] text-gray-50' : 'bg-neutral-300 hover:bg-neutral-400 text-gray-50'} text-[0.8em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none`}
           onClick={handleAddToCartClick}
           >
-          {isIconPlus ? (
-            <PlusCircleIcon className='h-10 w-10' fill='#e0e0de'/>
+          {isClicked ? (
+            <CheckCircleIcon className='h-4 w-4' fill='#f9fafb'/>
           ) : (
-            <CheckCircleIcon className='h-10 w-10' fill='#2BA41D' />
+            <ShoppingCartIcon className='h-4 w-4' fill='#f9fafb'/>
           )}
+          {isClicked ? 'Added to Cart' : 'Add To Cart'}
         </button>
       </div>
     </div>
