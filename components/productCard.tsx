@@ -47,6 +47,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <p className="text-sm text-gray-600 mb-2 font-semibold">{product.id}</p>
       <div className="relative">
         <button
+          id="add-hover-button"
           className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-row gap-2 justify-center items-center w-32
           ${isClicked ? 'bg-[#2BA41D] hover:bg-[#217318] bg-opacity-70 text-gray-50' : 'bg-neutral-400 hover:bg-neutral-500 bg-opacity-70 text-gray-50'} text-[0.6em] font-semibold py-2 px-4 rounded-full ml-3 h-10 focus:outline-none ${isHovering || isAdded ? '' : 'hidden'}`}
   
